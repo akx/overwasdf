@@ -17,7 +17,7 @@ def run_train(
     sample_rate,
     vec_len,
     resolution,
-    iterations=1000,
+    iterations=1000
 ):
     vecs = load_vectors(audio_filenames=input_files, sample_rate=sample_rate)
     model = create_model(vec_len, resolution=resolution)

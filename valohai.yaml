@@ -1,14 +1,16 @@
 ---
 
 - step:
-    name: Execute python run_train.py
-    image: gcr.io/tensorflow/tensorflow:1.4.0-gpu
+    name: Train
+    image: gcr.io/tensorflow/tensorflow:1.4.0-gpu-py3
     command:
+      - apt-get update
+      - apt-get install -y ffmpeg
       - pip install -r requirements.txt
       - export KERAS_BACKEND=tensorflow
-      - python run_train.py --output-dir=$VH_OUTPUTS_DIR --input-zip=$VH_INPUTS_DIR/inputs-zip/*.zip {parameters}
-    inputs:
-      - name: inputs-zip
+      - python run_train.py --output-dir=$VH_OUTPUTS_DIR --input-zip=dvaf.zip {parameters}
+    #inputs:
+    #  - name: inputs-zip
     parameters:
      - name: sample-rate
        type: integer

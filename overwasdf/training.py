@@ -28,7 +28,7 @@ def do_train(model, checkpoint_name, samples, next_sample, epochs=100, batch_siz
     csv_logger = CSVLogger('{}_audio.log'.format(checkpoint_name))
     escb = EarlyStopping(monitor='val_loss', patience=20, verbose=1)
     checkpoint_template = '%s-{epoch:02d}-{val_loss:.2f}.hdf5' % checkpoint_name
-    checkpoint = ModelCheckpoint(filepath=checkpoint_template, monitor='val_loss', verbose=1, period=2)
+    checkpoint = ModelCheckpoint(filepath=checkpoint_template, monitor='val_loss', verbose=1, period=10)
 
     model.fit(
         samples,
@@ -38,5 +38,5 @@ def do_train(model, checkpoint_name, samples, next_sample, epochs=100, batch_siz
         verbose=2,
         validation_split=0.1,
         epochs=epochs,
-        callbacks=[csv_logger, escb, checkpoint],
+        callbacks=[csv_logger, escb, checkpoint]
     )
