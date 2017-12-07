@@ -2,5 +2,3 @@ h5py
 keras
 librosa
 numpy
-seaborn
-tensorflow-gpu
